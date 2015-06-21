@@ -85,13 +85,14 @@ names(filteredMergedData) <- gsub("gravity", "Gravity", names(filteredMergedData
 ``` 
 
 ### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
-
-'''
-# Turn the Subject column values into factors, convert to table, aggregate and order by subject and activity
+```
+# Turn the Subject column values into factors and convert to table
 filteredMergedData$Subject <- as.factor(filteredMergedData$Subject)
 filteredMergedData <- data.table(filteredMergedData)
+# Find the mean for each Subject and Activity
 tidyData <- aggregate(. ~Subject + Activity, filteredMergedData, mean)
+# Order by the Subject and Activity
 tidyData <- tidyData[order(tidyData$Subject,tidyData$Activity),]
 # Write the Tidy data set to TidyData.txt file
 write.table(tidyData, file = "TidyData.txt", row.name=FALSE)
-'''
+```
