@@ -70,6 +70,7 @@ By examining the column names of the mergedData data set we could identify the f
 * 'gravity'  -> 'Gravity'
 
 ```
+# Use gsub to replace the character patterns in the column names
 names(filteredMergedData) <- gsub('Acc',"Acceleration",names(filteredMergedData))
 names(filteredMergedData) <- gsub('GyroJerk',"AngularAcceleration",names(filteredMergedData))
 names(filteredMergedData) <- gsub('Gyro',"AngularSpeed",names(filteredMergedData))
@@ -89,10 +90,13 @@ names(filteredMergedData) <- gsub("gravity", "Gravity", names(filteredMergedData
 # Turn the Subject column values into factors and convert to table
 filteredMergedData$Subject <- as.factor(filteredMergedData$Subject)
 filteredMergedData <- data.table(filteredMergedData)
+
 # Find the mean for each Subject and Activity
 tidyData <- aggregate(. ~Subject + Activity, filteredMergedData, mean)
+
 # Order by the Subject and Activity
 tidyData <- tidyData[order(tidyData$Subject,tidyData$Activity),]
+
 # Write the Tidy data set to TidyData.txt file
 write.table(tidyData, file = "TidyData.txt", row.name=FALSE)
 ```
