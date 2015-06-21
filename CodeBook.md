@@ -42,12 +42,15 @@ mergedData <- cbind(features,activity,subject)
 ```
 # Using grep extract the column names that contains 'mean' and 'std' (case insensitive)
 columnsWithMeanAndSTD <- grep(".*mean.*|.*std.*", names(mergedData), ignore.case=TRUE)
+
 # Form a vector of column names (together with Activity and Subject) and use it to create a subset data set
 filteredMergedData <- mergedData[,c(columnsWithMeanAndSTD, 562, 563)]
 ```
 
 ### 3. Uses descriptive activity names to name the activities in the data set
 ```
+# Replace the Activity field values (ids) with activity name factors
+filteredMergedData$Activity <- activityLabels[filteredMergedData[,87] ,2]
 ```
 
 ### 4. Appropriately labels the data set with descriptive variable names. 
@@ -82,11 +85,12 @@ names(filteredMergedData) <- gsub("gravity", "Gravity", names(filteredMergedData
 ``` 
 
 ### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
-
 '''
+# Turn the Subject column values into factors, convert to table, aggregate and order by subject and activity
 filteredMergedData$Subject <- as.factor(filteredMergedData$Subject)
 filteredMergedData <- data.table(filteredMergedData)
 tidyData <- aggregate(. ~Subject + Activity, filteredMergedData, mean)
 tidyData <- tidyData[order(tidyData$Subject,tidyData$Activity),]
+# Write the Tidy data set to TidyData.txt file
 write.table(tidyData, file = "TidyData.txt", row.name=FALSE)
 '''
