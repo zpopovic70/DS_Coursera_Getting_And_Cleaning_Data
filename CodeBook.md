@@ -11,9 +11,11 @@ This data is compiled from the recordings of 30 subjects performing activities o
 
 
 ### 1. Merge the training and the test set to create one data set
-##### Read the meta data
+```
+# Read the meta data
 featureNames <- read.table("UCI HAR Dataset/features.txt")
 activityLabels <- read.table("UCI HAR Dataset/activity_labels.txt", header = FALSE)
+```
 
 #### Read the training data
 subjectTrain <- read.table("UCI HAR Dataset/train/subject_train.txt", header = FALSE)
