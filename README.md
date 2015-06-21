@@ -18,4 +18,5 @@ This repository contains my work for the course project for the Coursera course 
 3. Wait for the 'Analysis script completed.' message
 4. Examine the content of the 'TidyData.txt' file created in the working directory
 
-## File CodeBook.md contains details of the transformation performed
+
+File *CodeBook.md* contains details of the data transformation performed during the script execution.
