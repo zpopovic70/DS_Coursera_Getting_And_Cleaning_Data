@@ -19,4 +19,4 @@ This repository contains my work for the course project for the Coursera course 
 4. Examine the content of the 'TidyData.txt' file created in the working directory
 
 
-File *CodeBook.md* contains details of the data transformation performed during the script execution.
+File **CodeBook.md** contains details of the data transformation performed during the script execution.
